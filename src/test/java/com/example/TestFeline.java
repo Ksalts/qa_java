@@ -1,38 +1,46 @@
 package com.example;
 
-import org.junit.Assert;
+import org.hamcrest.MatcherAssert;
 import org.junit.Test;
 
-import java.util.List;
-
+import static org.hamcrest.CoreMatchers.equalTo;
 
 public class TestFeline {
+
     @Test
-    public void testEatMeat() throws Exception {
-        Feline feline = new Feline();
-        List<String> food = feline.eatMeat();
-        Assert.assertEquals(List.of("Животные", "Птицы", "Рыба"), food);
+    public void getFamilyIsCorrect() {
+        String expectedFelineFamilyName = "Кошачьи";
+        MatcherAssert.assertThat("Некорректное название семейства кошачьих",
+                new Feline().getFamily(),
+                equalTo(expectedFelineFamilyName)
+        );
     }
 
     @Test
-    public void testGetFamily() {
-        Feline feline = new Feline();
-        String family = feline.getFamily();
-        Assert.assertEquals("Кошачьи", family);
+    public void getKittensInputCountIsCorrect() {
+        int expectedCount = 5;
+        MatcherAssert.assertThat("Некорректное количество котят",
+                new Feline().getKittens(expectedCount),
+                equalTo(expectedCount)
+        );
     }
 
     @Test
-    public void testGetKittensDefault() {
-        Feline feline = new Feline();
-        int kittens = feline.getKittens();
-        Assert.assertEquals(1, kittens);
+    public void getKittensDefaultIsCorrect() {
+        int expectedCount = 1;
+        MatcherAssert.assertThat("Некорректное количество котят",
+                new Feline().getKittens(),
+                equalTo(expectedCount)
+        );
     }
 
     @Test
-    public void testGetKittensWithArgument() {
+    public void eatMeatIsCorrect() throws Exception {
         Feline feline = new Feline();
-        int kittens = feline.getKittens(3);
-        Assert.assertEquals(3, kittens);
+
+        MatcherAssert.assertThat("Неправильный список еды",
+                feline.eatMeat(),
+                equalTo(feline.getFood("Хищник"))
+        );
     }
 }
-

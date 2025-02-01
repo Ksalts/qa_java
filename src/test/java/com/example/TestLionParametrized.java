@@ -12,7 +12,7 @@ import org.mockito.junit.MockitoRule;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 @RunWith(Parameterized.class)
-public class TestLion {
+public class TestLionParametrized {
 
     @Rule
     public MockitoRule rule = MockitoJUnit.rule();
@@ -23,7 +23,7 @@ public class TestLion {
     private final String sex;
     private final boolean hasMane;
 
-    public TestLion(String sex, boolean hasMane) {
+    public TestLionParametrized(String sex, boolean hasMane) {
         this.sex = sex;
         this.hasMane = hasMane;
     }
